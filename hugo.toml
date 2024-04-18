@@ -3,3 +3,15 @@ languageCode = 'en-us'
 title = 'Scot Reads'
 
 theme = "bookblog"
+
+
+[menus]
+    [[menus.main]]
+    name = 'Reviews'
+    pageRef = '/reviews'
+    weight = 10
+
+    [[menus.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 1

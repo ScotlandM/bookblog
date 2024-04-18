@@ -1,11 +1,26 @@
 {{ define "main" }}
-<h1>{{ .Params.book_title }}</h1>
-<div>{{ .Params.book_author }}</div>
-
-{{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-{{ $dateHuman := .Date | time.Format ":date_long" }}
-<time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-{{ .Content }}
-{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    <div class="book-review">
+        {{ with resources.Get (.Params.book_cover) }}
+            {{ $cover_300 := (.Resize "300x png q80") }}
+            {{ $cover_450 := (.Resize "450x png q80") }}
+            {{ $cover_600 := (.Resize "600x png q80") }}
+            <img class="cover"
+                 src="{{ $cover_600.RelPermalink }}"
+                 srcset="
+                {{ $cover_300.RelPermalink }},
+                {{ $cover_450.RelPermalink }} 1.5x,
+                {{ $cover_600.RelPermalink }} 2x"
+                 alt="{{ .Params.book_title }} by {{ .Params.book_author }}">
+        {{ end }}
+        <div class="review-body">
+            <div class="meta">
+                <h1 class="book-title">{{ .Params.book_title }}</h1>
+                <div>{{ .Params.book_author }}</div>
+            </div>
+            <div class="review-text">
+                {{ .Content }}
+                {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+            </div>
+        </div>
+    </div>
 {{ end }}

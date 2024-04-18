@@ -1,14 +1,17 @@
 <div class="review-preview">
-    <a href="{{ .RelPermalink }}">
+    <a href="{{ .RelPermalink }}" class="cover-wrap">
     {{ with resources.Get (.Params.book_cover) }}
-    {{ $cover := .Fit "140x400"}}
-    <img class="cover"
-         src="{{ $cover.RelPermalink }}"
-         alt="{{ .Params.book_title }} by {{ .Params.book_author }}"
-         width="{{ $cover.Width }}" height="{{ $cover.Height }}">
+        {{ $cover_250 := (.Resize "250x png q80") }}
+        {{ $cover_500 := (.Resize "500x png q80") }}
+        <img class="cover"
+             src="{{ $cover_500.RelPermalink }}"
+             srcset="
+                {{ $cover_250.RelPermalink }},
+                {{ $cover_500.RelPermalink }} 2x"
+             alt="{{ .Params.book_title }} by {{ .Params.book_author }}">
     {{ end }}
     </a>
-    <a href="{{ .RelPermalink }}">
+    <a href="{{ .RelPermalink }}" class="meta">
         <div class="book_title">{{ .Params.book_title }}</div>
         <div class="book_author">{{ .Params.book_author }}</div>
     </a>
