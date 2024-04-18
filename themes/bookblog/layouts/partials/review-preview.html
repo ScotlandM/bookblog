@@ -1,0 +1,18 @@
+<div class="review-preview">
+    <a href="{{ .RelPermalink }}">
+    {{ with resources.Get (.Params.book_cover) }}
+    {{ $cover := .Fit "140x400"}}
+    <img class="cover"
+         src="{{ $cover.RelPermalink }}"
+         alt="{{ .Params.book_title }} by {{ .Params.book_author }}"
+         width="{{ $cover.Width }}" height="{{ $cover.Height }}">
+    {{ end }}
+    </a>
+    <a href="{{ .RelPermalink }}">
+        <div class="book_title">{{ .Params.book_title }}</div>
+        <div class="book_author">{{ .Params.book_author }}</div>
+    </a>
+    <div class="preview_text">
+        {{ .Summary }}
+    </div>
+</div>

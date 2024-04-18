@@ -1,7 +1,11 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+    <h1>{{ site.Title }}</h1>
+    <div class="intro">
+    {{ .Content }}
+    </div>
+    <div class="recent-reviews">
+    {{ range first 3 site.RegularPages }}
+    {{ partial "review-preview.html" .}}
+    {{ end }}
+    </div>
 {{ end }}

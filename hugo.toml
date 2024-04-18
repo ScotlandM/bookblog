@@ -1,5 +1,5 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://scotreads.com/'
 languageCode = 'en-us'
-title = 'Book Blog'
+title = 'Scot Reads'
 
 theme = "bookblog"
