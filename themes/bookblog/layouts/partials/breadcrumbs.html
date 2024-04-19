@@ -1,5 +1,5 @@
 <ul class="breadcrumbs">
-    {{- range .Ancestors.Reverse }}
+    {{- range first 1 .Ancestors.Reverse }}
         <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{- end }}
     <li><a class="active" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
