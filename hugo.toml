@@ -4,6 +4,8 @@ title = 'Scot Reads'
 
 theme = "bookblog"
 
+enableRobotsTXT = true
+
 
 [menus]
     [[menus.main]]
